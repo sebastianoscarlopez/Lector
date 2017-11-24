@@ -18,7 +18,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".helper.barcode.camera.BarcodeActivity" />
+        <activity android:name=".helper.barcode.camera.BarcodeActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

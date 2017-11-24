@@ -166,7 +166,7 @@ public class CameraSource {
         private CameraSource mCameraSource = new CameraSource();
 
         /**
-         * Creates a camera source builder with the supplied context and detector.  Camera preview
+         * Creates a camera source builder with the supplied context and detector.  CAMERA preview
          * images will be streamed to the associated detector upon starting the camera source.
          */
         public Builder(Context context, Detector<?> detector) {
@@ -771,7 +771,7 @@ public class CameraSource {
                     mFocusMode)) {
                 parameters.setFocusMode(mFocusMode);
             } else {
-                Log.i(TAG, "Camera focus mode: " + mFocusMode + " is not supported on this device.");
+                Log.i(TAG, "CAMERA focus mode: " + mFocusMode + " is not supported on this device.");
             }
         }
 
@@ -784,7 +784,7 @@ public class CameraSource {
                         mFlashMode)) {
                     parameters.setFlashMode(mFlashMode);
                 } else {
-                    Log.i(TAG, "Camera flash mode: " + mFlashMode + " is not supported on this device.");
+                    Log.i(TAG, "CAMERA flash mode: " + mFlashMode + " is not supported on this device.");
                 }
             }
         }

@@ -12,15 +12,12 @@ import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.vision.MultiProcessor;
@@ -85,10 +82,6 @@ public class BarcodeFragment extends Fragment {
         } else {
             requestCameraPermission();
         }
-
-        Snackbar.make(mGraphicOverlay, "Tap to capture. Pinch/Stretch to zoom",
-                Snackbar.LENGTH_LONG)
-                .show();
         return view;
     }
 
@@ -98,7 +91,7 @@ public class BarcodeFragment extends Fragment {
      * sending the request.
      */
     private void requestCameraPermission() {
-        Log.w(TAG, "Camera permission is not granted. Requesting permission");
+        Log.w(TAG, "CAMERA permission is not granted. Requesting permission");
 
         final String[] permissions = new String[]{Manifest.permission.CAMERA};
 
@@ -119,10 +112,6 @@ public class BarcodeFragment extends Fragment {
         };
 
         view.findViewById(R.id.topLayout).setOnClickListener(listener);
-        Snackbar.make(mGraphicOverlay, R.string.permission_camera_rationale,
-                Snackbar.LENGTH_INDEFINITE)
-                .setAction(R.string.ok, listener)
-                .show();
     }
 
     /**
@@ -163,7 +152,6 @@ public class BarcodeFragment extends Fragment {
             boolean hasLowStorage = activity.registerReceiver(null, lowstorageFilter) != null;
 
             if (hasLowStorage) {
-                Toast.makeText(activity, R.string.low_storage_error, Toast.LENGTH_LONG).show();
                 Log.w(TAG, getString(R.string.low_storage_error));
             }
         }
@@ -173,7 +161,7 @@ public class BarcodeFragment extends Fragment {
         // at long distances.
         CameraSource.Builder builder = new CameraSource.Builder(activity.getApplicationContext(), barcodeDetector)
                 .setFacing(CameraSource.CAMERA_FACING_BACK)
-                .setRequestedPreviewSize(1600, 1024)
+                .setRequestedPreviewSize(1600, 1600)
                 .setRequestedFps(30);
 
         // make sure that auto focus is an available option
@@ -245,7 +233,7 @@ public class BarcodeFragment extends Fragment {
         }
 
         if (grantResults.length != 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Log.d(TAG, "Camera permission granted - initialize the camera source");
+            Log.d(TAG, "CAMERA permission granted - initialize the camera source");
             // we have permission, so create the camerasource
             createCameraSource(autoFocus, useFlash);
             return;

@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="ar.com.sebas.lector.helper.barcode.camera.BarcodeActivity"
+    class="ar.com.sebas.lector.helper.barcode.camera.BarcodeFragment"
+    android:layout_margin="0dp"
+    android:padding="0dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/topLayout"
-    tools:context="ar.com.sebas.lector.helper.barcode.camera.BarcodeActivity">
-
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/map"
-        class="ar.com.sebas.lector.helper.barcode.camera.BarcodeFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".EnviosActivity"
-        tools:layout="@layout/fragment_barcode" />
-</LinearLayout>
+    tools:layout="@layout/fragment_barcode" />
