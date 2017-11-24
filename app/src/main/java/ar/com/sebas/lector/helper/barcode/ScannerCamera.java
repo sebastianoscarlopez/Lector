@@ -13,7 +13,7 @@ import ar.com.sebas.lector.helper.barcode.camera.BarcodeUpdateListener;
  * Lector de códigos utilizando Mobile Vision de Google Play Services
  */
 
-public class ScannerCamera extends AbstractScanner {
+public class ScannerCamera extends Scanner {
     public ScannerCamera(Context context) {
         super(context);
         BarcodeFragment.setListener(new BarcodeUpdateListener() {

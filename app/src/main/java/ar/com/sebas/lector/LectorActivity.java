@@ -1,28 +1,32 @@
 package ar.com.sebas.lector;
 
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import ar.com.sebas.lector.helper.barcode.Scanner;
+import ar.com.sebas.lector.helper.barcode.enumScanner;
 
-import org.w3c.dom.Text;
-
-import ar.com.sebas.lector.helper.barcode.AbstractScanner;
-import ar.com.sebas.lector.helper.barcode.ScannerCamera;
-
-public class LectorActivity extends AppCompatActivity implements AbstractScanner.ScannerListener {
-
-    private ScannerCamera scannerCamera;
+public class LectorActivity extends AppCompatActivity implements Scanner.ScannerListener {
+    private Scanner scanner;
     private TextView txtData;
+    private ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lector);
         txtData = (TextView)findViewById(R.id.txtData);
-        scannerCamera = new ScannerCamera(this);
-        scannerCamera.setScannerListener(this);
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        scanner = Scanner.create(enumScanner.EMDK, getApplicationContext());
+        scanner.setScannerListener(this);
     }
 
     /**
@@ -30,7 +34,7 @@ public class LectorActivity extends AppCompatActivity implements AbstractScanner
      * @param view sin uso
      */
     public void read(View view) {
-        scannerCamera.Read();
+        scanner.Read();
     }
 
     /**
@@ -40,7 +44,6 @@ public class LectorActivity extends AppCompatActivity implements AbstractScanner
      */
     @Override
     public void onRead(String data) {
-        scannerCamera.Stop();
+        scanner.Stop();
         txtData.setText(data);
-    }
-}
+    }}

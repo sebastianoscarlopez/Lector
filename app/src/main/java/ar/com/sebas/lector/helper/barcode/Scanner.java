@@ -9,14 +9,12 @@ import java.util.EventListener;
  * Lector abstracto para poder implmentar el lector del TC70 o la camara, con una interfaz común
  */
 
-public abstract class AbstractScanner {
+public abstract class Scanner {
 
     protected Context context;
     ScannerListener scannerListener;
 
-    AbstractScanner(Context context) {
-        this.context = context;
-    }
+    protected Scanner(Context context) { this.context = context; }
 
     abstract public void Read();
     abstract public void Stop();
@@ -28,4 +26,17 @@ public abstract class AbstractScanner {
     public void setScannerListener(ScannerListener scannerListener) {
         this.scannerListener = scannerListener;
     }
+
+    static public Scanner create(enumScanner type, Context context){
+        switch(type)
+        {
+            case EMDK:
+                return new ScannerEMDK(context);
+            case Camera:
+                return new ScannerCamera(context);
+            default:
+                return null;
+        }
+    }
 }
+

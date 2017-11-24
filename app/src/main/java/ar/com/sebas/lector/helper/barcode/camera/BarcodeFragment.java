@@ -174,11 +174,11 @@ public class BarcodeFragment extends Fragment {
         CameraSource.Builder builder = new CameraSource.Builder(activity.getApplicationContext(), barcodeDetector)
                 .setFacing(CameraSource.CAMERA_FACING_BACK)
                 .setRequestedPreviewSize(1600, 1024)
-                .setRequestedFps(15.0f);
+                .setRequestedFps(30);
 
         // make sure that auto focus is an available option
         builder = builder.setFocusMode(
-                autoFocus ? Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE : null);
+                autoFocus ? Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO : null);
 
         mCameraSource = builder
                 .setFlashMode(useFlash ? Camera.Parameters.FLASH_MODE_TORCH : null)
