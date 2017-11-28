@@ -23,7 +23,7 @@ class LectorActivity : AppCompatActivity(), Scanner.ScannerListener {
 
     override fun onResume() {
         super.onResume()
-        scanner = Scanner.create(ScannerEnum.EMDK, this)
+        scanner = Scanner.create(ScannerEnum.DEFAULT, this)
         scanner!!.setScannerListener(this)
     }
 

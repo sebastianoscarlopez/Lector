@@ -11,6 +11,7 @@ import java.util.EventListener
 
 abstract class Scanner protected constructor(protected var context: Context) {
     internal lateinit var scannerListener: ScannerListener
+    internal var isReady: Boolean = false
 
     abstract fun read()
     abstract fun stop()
@@ -26,10 +27,20 @@ abstract class Scanner protected constructor(protected var context: Context) {
     companion object {
 
         fun create(type: ScannerEnum, context: Context): Scanner? {
-            return when (type) {
+            var scan = when (type) {
                 ScannerEnum.EMDK -> ScannerEMDK(context)
                 ScannerEnum.CAMERA -> ScannerCamera(context)
+                ScannerEnum.DEFAULT -> ScannerEMDK(context)
             }
+            if(!scan.isReady && type == ScannerEnum.DEFAULT)
+            {
+                scan = ScannerCamera(context)
+            }
+            if(!scan.isReady)
+            {
+                throw Error("No se pudo crear el lector")
+            }
+            return scan
         }
     }
 }

@@ -14,6 +14,7 @@ import ar.com.sebas.lector.helper.barcode.camera.BarcodeFragment
 class ScannerCamera(context: Context) : Scanner(context) {
     init {
         BarcodeFragment.setListener { barcode -> scannerListener.onRead(barcode.rawValue) }
+        isReady = true
     }
 
     override fun read() {

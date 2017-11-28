@@ -14,7 +14,7 @@ import com.symbol.emdk.barcode.Scanner.StatusListener
 
 /**
  * Created by lopez.sebastian on 06/03/2017.
- *
+ *A
  * Lectura utilizando el lector de los Equipos Motorola TC55 y TC70
  *
  */
@@ -30,6 +30,8 @@ class ScannerEMDK(context: Context) : ar.com.sebas.lector.helper.barcode.Scanner
         val results = EMDKManager.getEMDKManager(context, this)
         if (results.statusCode != EMDKResults.STATUS_CODE.SUCCESS) {
             Log.e("ScannerEMDK", "Falló el EMDK Manager")
+        }else{
+            isReady = true
         }
     }
 
