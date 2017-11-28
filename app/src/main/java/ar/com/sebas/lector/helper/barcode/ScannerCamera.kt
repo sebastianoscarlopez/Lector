@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import ar.com.sebas.lector.helper.barcode.camera.BarcodeActivity
 import ar.com.sebas.lector.helper.barcode.camera.BarcodeFragment
+import ar.com.sebas.lector.helper.barcode.camera.BarcodeUpdateListener
+import com.google.android.gms.vision.barcode.Barcode
 
 /**
  * Created by lopez.sebastian on 18/10/2017.
@@ -13,7 +15,11 @@ import ar.com.sebas.lector.helper.barcode.camera.BarcodeFragment
 
 class ScannerCamera(context: Context) : Scanner(context) {
     init {
-        BarcodeFragment.setListener { barcode -> scannerListener.onRead(barcode.rawValue) }
+        BarcodeFragment.setListener(object : BarcodeUpdateListener {
+            override fun onBarcodeDetected(barcode: Barcode) {
+                scannerListener.onRead(barcode.rawValue)
+            }
+        })
         isReady = true
     }
 
@@ -23,6 +29,6 @@ class ScannerCamera(context: Context) : Scanner(context) {
     }
 
     override fun stop() {
-        BarcodeActivity.Stop()
+        BarcodeActivity.stop()
     }
 }

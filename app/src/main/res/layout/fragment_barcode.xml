@@ -3,23 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/topLayout"
-    android:layout_margin="0dp"
-    android:padding="0dp"
     tools:context="ar.com.sebas.lector.helper.barcode.camera.BarcodeFragment">
 
     <ar.com.sebas.lector.helper.ui.camera.CameraSourcePreview
         android:id="@+id/preview"
-        android:layout_margin="0dp"
-        android:padding="0dp"
-        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ar.com.sebas.lector.helper.ui.camera.GraphicOverlay
             android:id="@+id/graphicOverlay"
-            android:layout_margin="0dp"
-            android:padding="0dp"
-            android:background="@color/colorPrimaryDark"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
