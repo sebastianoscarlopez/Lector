@@ -15,10 +15,14 @@
         />
 
     <Switch
-        android:id="@+id/swTC55"
+        android:id="@+id/swScanner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Switch" />
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:checked="false"
+        android:text="EMDK"
+        tools:checked="false" />
 
     <TextView
         android:id="@+id/txtData"

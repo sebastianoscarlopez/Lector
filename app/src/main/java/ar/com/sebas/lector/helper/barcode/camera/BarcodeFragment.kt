@@ -138,15 +138,12 @@ class BarcodeFragment : Fragment() {
         // at long distances.
         var builder: CameraSource.Builder = CameraSource.Builder(activity!!.applicationContext, barcodeDetector)
                 .setFacing(CameraSource.CAMERA_FACING_BACK)
-                .setRequestedPreviewSize(1000, 1600)
+                .setRequestedPreviewSize(1600, 1600)
+                .setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO)
+                .setFlashMode(Camera.Parameters.FLASH_MODE_OFF)
                 .setRequestedFps(30f)
 
-        // make sure that auto focus is an available option
-        builder = builder.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO)
-
-        mCameraSource = builder
-                .setFlashMode(Camera.Parameters.FLASH_MODE_OFF)
-                .build()
+        mCameraSource = builder.build()
     }
 
 

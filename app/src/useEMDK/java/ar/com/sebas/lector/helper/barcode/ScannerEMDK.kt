@@ -86,18 +86,17 @@ class ScannerEMDK(context: Context) : ar.com.sebas.lector.helper.barcode.Scanner
     }
 
     override fun stop() {
+        scanner?.cancelRead()
+    }
+
+    override fun close() {
         try {
-            if (emdkManager != null) {
-                emdkManager!!.release()
-                emdkManager = null
-            }
-            if (scanner != null) {
-                // releases the scanner hardware resources for other application
-                // to use. You must call this as soon as you're done with the
-                // scanning.
-                scanner!!.disable()
-                scanner = null
-            }
+            scanner?.cancelRead()
+            scanner?.disable()
+            scanner?.release()
+            scanner = null
+            emdkManager?.release()
+            emdkManager = null
         } catch (e: ScannerException) {
             e.printStackTrace()
         }
@@ -117,10 +116,7 @@ class ScannerEMDK(context: Context) : ar.com.sebas.lector.helper.barcode.Scanner
     }
 
     override fun onClosed() {
-        if (this.emdkManager != null) {
-            this.emdkManager!!.release()
-            this.emdkManager = null
-        }
+        close()
     }
 
     // Method to set some decoder parameters in the ScannerConfig object

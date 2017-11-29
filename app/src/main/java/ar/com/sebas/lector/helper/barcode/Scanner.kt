@@ -15,6 +15,7 @@ abstract class Scanner protected constructor(protected var context: Context) {
 
     abstract fun read()
     abstract fun stop()
+    abstract fun close()
 
     interface ScannerListener : EventListener {
         fun onRead(data: String)
@@ -35,10 +36,6 @@ abstract class Scanner protected constructor(protected var context: Context) {
             if(!scan.isReady && type == ScannerEnum.DEFAULT)
             {
                 scan = ScannerCamera(context)
-            }
-            if(!scan.isReady)
-            {
-                throw Error("No se pudo crear el lector")
             }
             return scan
         }

@@ -14,6 +14,7 @@ import com.google.android.gms.vision.barcode.Barcode
  */
 
 class ScannerCamera(context: Context) : Scanner(context) {
+
     init {
         BarcodeFragment.setListener(object : BarcodeUpdateListener {
             override fun onBarcodeDetected(barcode: Barcode) {
@@ -30,5 +31,9 @@ class ScannerCamera(context: Context) : Scanner(context) {
 
     override fun stop() {
         BarcodeActivity.stop()
+    }
+
+    override fun close() {
+        stop()
     }
 }
